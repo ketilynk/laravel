@@ -13,16 +13,26 @@ use App\Http\Middleware\LogAcessoMiddleware;
 |
 */
 
-Route::get('/', [App\Http\Controllers\Principal::class, 'principal']);
-Route::get('/contato', [App\Http\Controllers\contato::class, 'contato']);
-Route::get('/rematricula', [App\Http\Controllers\Aluno::class, 'rematricula']);
-Route::get('/cancelar-matricula', [App\Http\Controllers\Aluno::class, 'cancelar']);
-Route::get('/notas', [App\Http\Controllers\pai::class, 'notas']);
-Route::get('/chamada', [App\Http\Controllers\professor::class, 'chamada']);
+ Route::get('/', [App\Http\Controllers\Principal::class, 'principal'])->name('pagina-inicial');
 
-Route::get('/aluno/login', [App\Http\Controllers\contato::class, 'contato']);
+ Route::prefix('publico')->group(function(){
+    Route::get('/contato/{nome}', [App\Http\Controllers\principal::class, 'contato']);
 
-Route::get('/professor/login', [App\Http\Controllers\contato::class, 'contato']);
+Route::get('/contato/{nome}/{sobrenome}', [App\Http\Controllers\principal::class, 'contatoNomeCompleto']); 
+
+Route::get('/contato/{nome}/{sobrenome}/{assunto}', [App\Http\Controllers\principal::class, 'assunto']);
+
+Route::get('/contato/{nome}/{sobrenome}/{assunto}/{email}/{telefone?}', [App\Http\Controllers\principal::class, 'mensagem']);
+ });
+
+ 
+
+
+
+Route::fallback(function(){
+    echo "a rota acessada nao existe";
+    echo "<a href'".route('pagina-inicial')."'>voltar<</a>";
+});
 
 
 
