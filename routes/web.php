@@ -12,18 +12,47 @@ use App\Http\Middleware\LogAcessoMiddleware;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::prefix('/aluno')->group(function(){
+    Route::get('/index', [App\Http\Controllers\AlunoController::class, 'index'])->name('aluno.index');
+    Route::post('/add', [App\Http\Controllers\AlunoController::class, 'add'])->name('aluno.add');
+}); 
 
-Route::get('/', [App\Http\Controllers\Principal::class, 'principal']);
-Route::get('/contato', [App\Http\Controllers\contato::class, 'contato']);
-Route::get('/rematricula', [App\Http\Controllers\Aluno::class, 'rematricula']);
-Route::get('/cancelar-matricula', [App\Http\Controllers\Aluno::class, 'cancelar']);
-Route::get('/notas', [App\Http\Controllers\pai::class, 'notas']);
-Route::get('/chamada', [App\Http\Controllers\professor::class, 'chamada']);
-Route::get('/aluno/login', [App\Http\Controllers\contato::class, 'contato']);
+Route::prefix('/curso')->group(function(){
 
-Route::get('/professor/login', [App\Http\Controllers\contato::class, 'contato']);
+    Route::get('/index', [App\Http\Controllers\CursoController::class, 'index'])
+    ->name('curso.index');
 
+    Route::post('/add', [App\Http\Controllers\CursoController::class, 'add'])
+    ->name('curso.add');
 
+});
+Route::prefix('/professor')->group(function(){
+
+    Route::get('/index', [App\Http\Controllers\ProfessorController::class, 'index'])
+    ->name('professor.index');
+
+    Route::post('/add', [App\Http\Controllers\ProfessorController::class, 'add'])
+    ->name('professor.add');
+
+});
+Route::prefix('/componente')->group(function(){
+
+    Route::get('/index', [App\Http\Controllers\ComponenteController::class, 'index'])
+    ->name('componente.index');
+
+    Route::post('/add', [App\Http\Controllers\ComponenteController::class, 'add'])
+    ->name('componente.add');
+
+});
+Route::prefix('/administrador')->group(function(){
+
+    Route::get('/index', [App\Http\Controllers\AdministradorController::class, 'index'])
+    ->name('administrador.index');
+
+    Route::post('/add', [App\Http\Controllers\AdministradorController::class, 'add'])
+    ->name('administrador.add');
+
+});
 
 
 
