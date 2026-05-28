@@ -58,26 +58,78 @@
 
     </form>
 
-    @isset($administradores)
+    <table border="1">
 
-        @foreach($administradores as $administrador)
+        <tr>
+            <td>Nome</td>
+            <td>Email</td>
+            <td>Telefone</td>
+            <td>CPF</td>
+            <td>Usuário</td>
+            <td>Status</td>
+            <td colspan="2">Ações</td>
+        </tr>
 
-            <h3>{{ $administrador->nome }}</h3>
+        @isset($administradores)
 
-            <p>{{ $administrador->email }}</p>
+            @foreach($administradores as $administrador)
 
-            <p>{{ $administrador->telefone }}</p>
+                <tr>
 
-            <p>{{ $administrador->cpf }}</p>
+                    <td>
+                        {{ $administrador->nome }}
+                    </td>
 
-            <p>{{ $administrador->usuario }}</p>
+                    <td>
+                        {{ $administrador->email }}
+                    </td>
 
-            <p>{{ $administrador->status }}</p>
+                    <td>
+                        {{ $administrador->telefone }}
+                    </td>
 
-            <hr>
+                    <td>
+                        {{ $administrador->cpf }}
+                    </td>
 
-        @endforeach
+                    <td>
+                        {{ $administrador->usuario }}
+                    </td>
 
-    @endisset
+                    <td>
+                        {{ $administrador->status }}
+                    </td>
+
+                    <td>
+
+                        <form action="{{ route('administrador.remove', ['id' => $administrador->id]) }}" method="GET">
+
+                            <button type="submit">
+                                Remover
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                    <td>
+
+                        <form action="{{ route('administrador.atualizar', ['id' => $administrador->id]) }}" method="GET">
+
+                            <button type="submit">
+                                Atualizar
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+            @endforeach
+
+        @endisset
+
+    </table>
 
 </div>

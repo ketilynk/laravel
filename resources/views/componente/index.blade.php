@@ -34,26 +34,63 @@
 
     </form>
 
-    @isset($componentes)
+    <table border="1">
 
-        @foreach($componentes as $componente)
+        <tr>
+            <td>Nome</td>
+            <td>Hora Início</td>
+            <td>Hora Fim</td>
+            <td colspan="2">Ações</td>
+        </tr>
 
-            <h3>
-                {{ $componente->nome }}
-            </h3>
+        @isset($componentes)
 
-            <p>
-                {{ $componente->hora_inicio }}
-            </p>
+            @foreach($componentes as $componente)
 
-            <p>
-                {{ $componente->hora_fim }}
-            </p>
+                <tr>
 
-            <hr>
+                    <td>
+                        {{ $componente->nome }}
+                    </td>
 
-        @endforeach
+                    <td>
+                        {{ $componente->hora_inicio }}
+                    </td>
 
-    @endisset
+                    <td>
+                        {{ $componente->hora_fim }}
+                    </td>
+
+                    <td>
+
+                        <form action="{{ route('componente.remove', ['id' => $componente->id]) }}" method="GET">
+
+                            <button type="submit">
+                                Remover
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                    <td>
+
+                        <form action="{{ route('componente.atualizar', ['id' => $componente->id]) }}" method="GET">
+
+                            <button type="submit">
+                                Atualizar
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+            @endforeach
+
+        @endisset
+
+    </table>
 
 </div>

@@ -34,26 +34,63 @@
 
     </form>
 
-    @isset($professores)
+    <table border="1">
 
-        @foreach($professores as $professor)
+        <tr>
+            <td>Nome</td>
+            <td>Email</td>
+            <td>Telefone</td>
+            <td colspan="2">Ações</td>
+        </tr>
 
-            <h3>
-                {{ $professor->nome }}
-            </h3>
+        @isset($professores)
 
-            <p>
-                {{ $professor->email }}
-            </p>
+            @foreach($professores as $professor)
 
-            <p>
-                {{ $professor->telefone }}
-            </p>
+                <tr>
 
-            <hr>
+                    <td>
+                        {{ $professor->nome }}
+                    </td>
 
-        @endforeach
+                    <td>
+                        {{ $professor->email }}
+                    </td>
 
-    @endisset
+                    <td>
+                        {{ $professor->telefone }}
+                    </td>
+
+                    <td>
+
+                        <form action="{{ route('professor.remove', ['id' => $professor->id]) }}" method="GET">
+
+                            <button type="submit">
+                                Remover
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                    <td>
+
+                        <form action="{{ route('professor.atualizar', ['id' => $professor->id]) }}" method="GET">
+
+                            <button type="submit">
+                                Atualizar
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+            @endforeach
+
+        @endisset
+
+    </table>
 
 </div>
