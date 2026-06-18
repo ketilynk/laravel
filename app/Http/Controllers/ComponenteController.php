@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ComponenteController extends Controller
 {
@@ -14,19 +15,43 @@ class ComponenteController extends Controller
             'componentes'=>$componente::all()
         ]);
     }
+    function add(Request $dados) { 
+        $validator = Validator::make(
+		      $dados->all(),
+	            [
+	                'nome' => 'required|min:3|max:255',
+	                'hora_inicio' => 'required|min:3|max:255',
+	                'hora_fim' => 'required|min:3|max:255',
+	            ],
+	            [
+	                'hora_inicio.required' => 'O campo hora_inicio é obrigatório.',
+	                'hora_inicio.min' => 'O campo hora_inicio deve conter no mínimo 3 caracteres.',
+	                'hora_inicio.max' => 'O campo hora_inicio deve conter no máximo 255 caracteres.',
 
-    function add(Request $dados){
+	                'hora_fim.required' => 'O campo hora_fim é obrigatório.',
+	                'hora_fim.min' => 'O campo hora_fim deve conter no mínimo 3 caracteres.',
+	                'hora_fim.max' => 'O campo hora_fim deve conter no máximo 255 caracteres.',
 
+	               
+                    'nome.required' => 'O campo nome é obrigatório.',
+	                'nome.min' => 'O campo nome deve conter no mínimo 3 caracteres.',
+	                'nome.max' => 'O campo nome deve conter no máximo 255 caracteres.',
+	            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('componente.index')
+                ->withErrors($validator)
+                ->withInput();
+        }
         $componente = new \App\Models\ComponenteModel();
-
         $componente::create($dados->all());
 
+        //RECUPERANDO TODOS ALUNOS DO BANCO E ENVIANDO PARA A VIEW
         $componentes = new \App\Models\ComponenteModel();
 
-        return view('componente.index', [
-            'success'=>'Cadastrado!',
-            'componentes'=>$componentes::all()
-        ]);
+        return view('componente.index', ['success'=>'Cadastrado!', 'componentes'=>$componentes::all()]);
     }
 
     function remove(string $id){

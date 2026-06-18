@@ -31,6 +31,23 @@ class AdministradorController extends Controller
 	                'nome.required' => 'O campo nome é obrigatório.',
 	                'nome.min' => 'O campo nome deve conter no mínimo 3 caracteres.',
 	                'nome.max' => 'O campo nome deve conter no máximo 255 caracteres.',
+
+                    'telefone.required' => 'O campo nome é obrigatório.',
+	                'telefone.min' => 'O campo nome deve conter no mínimo 14 caracteres.',
+	                'telefone.max' => 'O campo nome deve conter no máximo 16 caracteres.',
+
+                    'email.required' => 'O campo nome é obrigatório.',
+	                'email.min' => 'O campo nome deve conter no mínimo 5 caracteres.',
+	                'email.max' => 'O campo nome deve conter no máximo 255 caracteres.',
+
+                    'cpf.required' => 'O campo nome é obrigatório.',
+	                'cpf.min' => 'O campo nome deve conter no mínimo 11 caracteres.',
+	                'cpf.max' => 'O campo nome deve conter no máximo 11 caracteres.',
+
+                    'status.required' => 'O campo nome é obrigatório.',
+	                'status.min' => 'O campo nome deve conter no mínimo 30 caracteres.',
+	                'status.max' => 'O campo nome deve conter no máximo 255 caracteres.',
+
 	            ]
         );
 

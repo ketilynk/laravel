@@ -6,13 +6,13 @@
 
         <label for="nome">Nome</label>
 
-        <input type="text" name="nome" id="nome">
+        <input type="text" name="nome" id="nome" value="{{ old('nome') }}">
 
         <br><br>
 
         <label for="periodo">Período</label>
 
-        <input type="text" name="periodo" id="periodo">
+        <input type="text" name="periodo" id="periodo" value="{{ old('periodo') }}">
 
         <br><br>
 
@@ -25,6 +25,13 @@
             <h1>{{ $success }}</h1>
 
         @endisset
+        @if($errors->any())
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
 
     </form>
 
