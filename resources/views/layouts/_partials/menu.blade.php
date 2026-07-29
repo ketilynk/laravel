@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <a href="{{route('principal')}}">Principal</a>
+    </div>
+
+        <div class="col-3">
+            <a href="{{route('sobre')}}">Sobre</a>
+    </div>
+
+        <div class="col-3">
+            <a href="{{route('produtos')}}">Produtos</a>
+    </div>
+
+        <div class="col-3">
+            <a href="{{route('contato')}}">Contatos</a>
+    
+    </div>
+    </div>
+</div>

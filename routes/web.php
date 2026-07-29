@@ -12,48 +12,10 @@ use App\Http\Middleware\LogAcessoMiddleware;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::prefix('/aluno')->group(function(){
-    Route::get('/index', [App\Http\Controllers\AlunoController::class, 'index'])->name('aluno.index');
-    Route::post('/add', [App\Http\Controllers\AlunoController::class, 'add'])->name('aluno.add');
-}); 
 
-Route::prefix('/curso')->group(function(){
+Route::get('/', [App\Http\Controllers\Principal::class, 'principal'])->name('principal');
 
-    Route::get('/index', [App\Http\Controllers\CursoController::class, 'index'])
-    ->name('curso.index');
-
-    Route::post('/add', [App\Http\Controllers\CursoController::class, 'add'])
-    ->name('curso.add');
-
-});
-Route::prefix('/professor')->group(function(){
-
-    Route::get('/index', [App\Http\Controllers\ProfessorController::class, 'index'])
-    ->name('professor.index');
-
-    Route::post('/add', [App\Http\Controllers\ProfessorController::class, 'add'])
-    ->name('professor.add');
-
-});
-Route::prefix('/componente')->group(function(){
-
-    Route::get('/index', [App\Http\Controllers\ComponenteController::class, 'index'])
-    ->name('componente.index');
-
-    Route::post('/add', [App\Http\Controllers\ComponenteController::class, 'add'])
-    ->name('componente.add');
-
-});
-Route::prefix('/administrador')->group(function(){
-
-    Route::get('/index', [App\Http\Controllers\AdministradorController::class, 'index'])
-    ->name('administrador.index');
-
-    Route::post('/add', [App\Http\Controllers\AdministradorController::class, 'add'])
-    ->name('administrador.add');
-
-});
-
-
-
+Route::get('/sobre', [App\Http\Controllers\Principal::class, 'sobre'])->name('sobre');
+Route::get('/produtos', [App\Http\Controllers\Principal::class, 'produtos'])->name('produtos');
+Route::get('/contatos', [App\Http\Controllers\Principal::class, 'contato'])->name('contato');
 
